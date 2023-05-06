@@ -4,6 +4,7 @@ from fastapi import UploadFile, File
 from model.battingShotClassification.model import classifyBattingShot
 import cv2
 import os
+import uvicorn
 
 
 # Create a FastAPI app.
@@ -29,4 +30,4 @@ async def predict(video: UploadFile = File(...)):
 
 # Run the app.
 if __name__ == "__main__":
-    app.run(debug=True)
+    uvicorn.run(app, port=8000, host="0.0.0.0")

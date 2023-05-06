@@ -7,7 +7,7 @@ from collections import Counter
 class_labels = ['Cover Shot', 'Flick Shot', 'Pull Shot', 'Straight Shot', 'Sweep_Slog Shot']
 
 # Load the model into the app.
-model = tf.keras.models.load_model("model/battingShotClassification/batting_style_classification.h5", compile=False)
+model = tf.keras.models.load_model("app/model/battingShotClassification/batting_style_classification.h5", compile=False)
 
 def classifyBattingShot(video: cv2.VideoCapture):
     fps = int(video.get(cv2.CAP_PROP_FPS))
