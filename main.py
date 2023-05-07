@@ -6,6 +6,10 @@ from model.battingShotClassification.model import classifyBattingShot
 from model.bowlingTypeClassificationModels.model import classifyBowlingType
 import cv2
 import os
+import asyncio
+asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
+
 # import uvicorn
 
 origins = ["*"]
