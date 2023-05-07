@@ -7,10 +7,11 @@ from collections import Counter
 class_labels = ['Cover Shot', 'Flick Shot', 'Pull Shot', 'Straight Shot', 'Sweep_Slog Shot']
 
 # Load the model into the app.
-model = tf.keras.models.load_model("app/model/battingShotClassification/batting_style_classification.h5", compile=False)
+
+"""UPDATE ACCORDINGLY WITH DOCKER FILE SYSTEM PATH"""
+model = tf.keras.models.load_model("model/battingShotClassification/batting_style_classification.h5", compile=False)
 
 def classifyBattingShot(video: cv2.VideoCapture):
-    fps = int(video.get(cv2.CAP_PROP_FPS))
     predicted_labels = []
     while video.isOpened():
         ret, frame = video.read()
@@ -32,4 +33,4 @@ def classifyBattingShot(video: cv2.VideoCapture):
 
     print(predicted_labels)
     most_common_element = Counter(predicted_labels).most_common(1)[0][0]
-    return {'response': most_common_element}
+    return {'Batting style': most_common_element}

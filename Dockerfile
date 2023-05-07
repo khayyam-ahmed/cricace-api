@@ -1,18 +1,7 @@
-# FROM python:3.10
-
-# ADD main.py .
-# ADD requirements.txt .
-# RUN pip install -r requirements.txt
-
-# CMD ["uvicorn", "main:app", "--reload"]
-
-# criace-apis-image
 
 
-# Build container
-# FROM python:3.10-slim-buster
-
-FROM python:3.10 AS builder
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9-slim
+# FROM python:3.10 AS builder
 
 WORKDIR /cricace-app
 
@@ -27,19 +16,18 @@ RUN apt-get install -y libglib2.0-0
 
 COPY requirements.txt .
 
+RUN pip install --upgrade pip
+
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
 
 RUN pip install tensorflow-cpu
+RUN pip install ultralytics==8.0.20 
 
 
-# Runtime container
-FROM python:3.10-slim-buster
-COPY --from=builder /usr/local/lib/python3.10/site-packages/ /usr/local/lib/python3.10/site-packages/
-
-COPY . ./app
+COPY . .
 
 
-CMD ["python", "./app/main.py"]
+# CMD ["python", "./app/main.py"]
 # CMD ["uvicorn", "main:app", "--reload"]
