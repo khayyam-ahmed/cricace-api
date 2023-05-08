@@ -34,3 +34,10 @@ pip uninstall -y opencv-contrib-python
 # pip uninstall -y opencv-python
 
 pip install --force-reinstall opencv-python-headless==4.5.4.58
+
+
+find ~ -name "matplotlib"
+
+rm -rf ~/.matplotlib
+rm -rf ~/.cache/matplotlib
+rm -rf ~/.cache/fontconfig/
