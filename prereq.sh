@@ -1,6 +1,11 @@
 
 pip3 install -r requirements.txt
 
+
+
+fallocate -l 512M /swapfile
+chmod 600 /swapfile
+
 dd if=/dev/zero of=/swapfile bs=1024 count=524288
 chown root:root /swapfile
 chmod 0600 /swapfile
