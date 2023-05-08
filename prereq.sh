@@ -18,7 +18,7 @@ pip3 --no-cache-dir install ultralytics
 pip3 install tensorflow-cpu
 pip3 install asyncio
 
-pip3 uninstall opencv-contrib-python
-pip3 uninstall opencv-python
+pip3 uninstall -y opencv-contrib-python
+pip3 uninstall -y opencv-python
 
 pip3 install --force-reinstall opencv-python-headless==4.5.4.58
