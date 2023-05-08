@@ -1,8 +1,11 @@
 
 apt-get update && apt-get install -y libgl1-mesa-glx
+sudo apt-get install python3.6
 apt-get install -y libglib2.0-0
 
-/opt/render/project/src/.venv/bin/python -m pip install --upgrade pip
+# /opt/render/project/src/.venv/bin/python -m pip install --upgrade pip
+
+python -m pip install --upgrade pip
 
 pip install -r requirements.txt
 
