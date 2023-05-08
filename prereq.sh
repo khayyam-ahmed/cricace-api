@@ -31,6 +31,6 @@ export TF_ENABLE_ONEDNN_OPTS=0
 pip install tensorflow-cpu
 
 pip uninstall -y opencv-contrib-python
-pip uninstall -y opencv-python
+# pip uninstall -y opencv-python
 
 pip install --force-reinstall opencv-python-headless==4.5.4.58
