@@ -1,15 +1,28 @@
 import fastapi
 from fastapi import UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
 # from io import BytesIO
 from model.battingShotClassification.model import classifyBattingShot
 from model.bowlingTypeClassificationModels.model import classifyBowlingType
 import cv2
 import os
+# import asyncio
+# asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
+
 # import uvicorn
 
+origins = ["*"]
 
 # Create a FastAPI app.
 app = fastapi.FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"])
+
 
 @app.get("/")
 def index():
@@ -35,6 +48,8 @@ async def predict(video: UploadFile = File(...)):
     video.release()
     os.remove("temp.mp4")
     return prediction
+
+# app.include_router(ToolsRoutes.router)
 
 # Run the app.
 # if __name__ == "__main__":
