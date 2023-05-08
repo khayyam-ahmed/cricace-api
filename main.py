@@ -49,7 +49,7 @@ async def predict(video: UploadFile = File(...)):
     os.remove("temp.mp4")
     return prediction
 
-app.include_router(ToolsRoutes.router)
+# app.include_router(ToolsRoutes.router)
 
 # Run the app.
 # if __name__ == "__main__":
