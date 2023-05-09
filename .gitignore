@@ -1,4 +1,4 @@
 cricace_api_env
+__pycache__
 .DS_Store
-# Dockerfile
 Procfile
