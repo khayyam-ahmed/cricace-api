@@ -66,4 +66,4 @@ mkdir "model\bowlingTypeClassificationModels\content"
 
 pip3 install --force-reinstall opencv-python-headless==4.5.4.58
 
-gunicorn -w  4 -k uvicorn.workers.UvicornWorker main:app
+# gunicorn -w  4 -k uvicorn.workers.UvicornWorker main:app
