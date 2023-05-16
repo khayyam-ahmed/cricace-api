@@ -1,0 +1,5 @@
+[Ultralytics YOLO <class 'ultralytics.yolo.engine.results.Boxes'> masks
+type: <class 'torch.Tensor'>
+shape: torch.Size([1, 6])
+dtype: torch.float32
+ + tensor([[6.95000e+02, 4.40000e+02, 7.05000e+02, 4.50000e+02, 4.47703e-01, 0.00000e+00]])]

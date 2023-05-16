@@ -62,7 +62,7 @@ pip3 install asyncio
 pip3 uninstall opencv-contrib-python
 pip3 uninstall opencv-python
 
-mkdir "model\bowlingTypeClassificationModels\content"
+# mkdir "model\bowlingTypeClassificationModels\content"
 
 pip3 install --force-reinstall opencv-python-headless==4.5.4.58
 
