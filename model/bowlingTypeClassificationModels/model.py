@@ -445,10 +445,10 @@ def classifyBowlingType():
   player = "test"
   output = ball_classification(player,videofile,video_path,player_det_model,ball_det_model)
   
-  os.remove("model/bowlingTypeClassificationModels/content/output.mp4")
-  os.remove("model/bowlingTypeClassificationModels/content/output.txt")
-  os.remove("model/bowlingTypeClassificationModels/content/output2.txt")
-  os.remove("model/bowlingTypeClassificationModels/content/pic.jpg")
+  # os.remove("model/bowlingTypeClassificationModels/content/output.mp4")
+  # os.remove("model/bowlingTypeClassificationModels/content/output.txt") 
+  # os.remove("model/bowlingTypeClassificationModels/content/output2.txt")
+  # os.remove("model/bowlingTypeClassificationModels/content/pic.jpg")
 
   # Ideal
   # bowling_type = ball_classification(video_path,player_det_model,ball_det_model)
