@@ -144,7 +144,8 @@ def ball_tracking(path,model_ball,player_det_model):
   frame_height = int(cap.get(4))
   
   #Video Writer
-  out = cv2.VideoWriter('model/bowlingTypeClassificationModels/content/output.mp4', fourcc, 30.0, (frame_width, frame_height))
+  out = cv2.VideoWriter('output.mp4', fourcc, 30.0, (frame_width, frame_height))
+  # out = cv2.VideoWriter('model/bowlingTypeClassificationModels/content/output.mp4', fourcc, 30.0, (frame_width, frame_height))
 
   #Defining the Model
   model = YOLO(model_ball)
@@ -159,16 +160,19 @@ def ball_tracking(path,model_ball,player_det_model):
     if not ret:
       break 
     
-    cv2.imwrite('model/bowlingTypeClassificationModels/content/pic.jpg',frame)
+    cv2.imwrite('pic.jpg',frame)
+    # cv2.imwrite('model/bowlingTypeClassificationModels/content/pic.jpg',frame)
 
-    results = model.predict(source='model/bowlingTypeClassificationModels/content/pic.jpg')
+    results = model.predict(source='pic.jpg')
+    # results = model.predict(source='model/bowlingTypeClassificationModels/content/pic.jpg')
 
     # For writting the predicted result
-    with open("model/bowlingTypeClassificationModels/content/output.txt","w") as f:
+    with open("output.txt","w") as f:
       f.write(str(results))
 
     # Get the bounding box around the ball        
-    path='model/bowlingTypeClassificationModels/content/output.txt'
+    path='output.txt'
+    # path='model/bowlingTypeClassificationModels/content/output.txt'
     
     #Getting the exact coordinates      
     x,y,w,h =coordinates(path)
@@ -179,10 +183,10 @@ def ball_tracking(path,model_ball,player_det_model):
     cv2.rectangle(frame, (x, y), (x+w,y+h), (0, 0, 255), 2)
     
     results = model_player.predict(source=frame)
-    with open("model/bowlingTypeClassificationModels/content/output2.txt","w") as f:
+    with open("output2.txt","w") as f:
         f.write(str(results))
     
-    player_coordinates=coordinates_player("model/bowlingTypeClassificationModels/content/output2.txt")
+    player_coordinates=coordinates_player("output2.txt")
     frame_coordinates_player[count]=player_coordinates
 
 
@@ -328,11 +332,14 @@ def ball_classification(player_name,filename,folder_path,player_det_model,ball_d
           break
         if(count==first_frame):
           print("first frame",count)
-          cv2.imwrite('model/bowlingTypeClassificationModels/content/pic.jpg',frame)
+          cv2.imwrite('pic.jpg',frame)
+          # cv2.imwrite('model/bowlingTypeClassificationModels/content/pic.jpg',frame)
           results = model_player.predict(source=frame)
-          with open("model/bowlingTypeClassificationModels/content/output.txt","w") as f:
+          # with open("model/bowlingTypeClassificationModels/content/output.txt","w") as f:
+          with open("output.txt","w") as f:
             f.write(str(results))
-          coordinates_bt=coordinates_player("model/bowlingTypeClassificationModels/content/output.txt")
+          coordinates_bt=coordinates_player("output.txt")
+          # coordinates_bt=coordinates_player("model/bowlingTypeClassificationModels/content/output.txt")
           
           
           H1=coordinates_bt["batsman"]["h"]
@@ -354,22 +361,24 @@ def ball_classification(player_name,filename,folder_path,player_det_model,ball_d
           
           # print("height of pitch in first frame :",height_of_pitch)
           
-          results = model_ball.predict(source="model/bowlingTypeClassificationModels/content/pic.jpg")
-          with open("model/bowlingTypeClassificationModels/content/output.txt","w") as f:
+          results = model_ball.predict(source="pic.jpg")
+          with open("output.txt","w") as f:
             f.write(str(results))
-          xmin,ymin,h,w=coordinates("model/bowlingTypeClassificationModels/content/output.txt")
+          xmin,ymin,h,w=coordinates("output.txt")
           cv2.rectangle(frame, (xmin,ymin),(xmin+w,ymin+h), (0, 255,0 ), 1)
           # cv2_imshow(frame)
 
         if(count==bounce_frame):
           
           print("bounce frame",bounce_frame)
-          cv2.imwrite('model/bowlingTypeClassificationModels/content/pic.jpg',frame)
-          results = model_player.predict(source="model/bowlingTypeClassificationModels/content/pic.jpg")
-          with open("model/bowlingTypeClassificationModels/content/output.txt","w") as f:
+          cv2.imwrite('pic.jpg',frame)
+          # cv2.imwrite('model/bowlingTypeClassificationModels/content/pic.jpg',frame)
+          results = model_player.predict(source="pic.jpg")
+          # results = model_player.predict(source="model/bowlingTypeClassificationModels/content/pic.jpg")
+          with open("output.txt","w") as f:
             f.write(str(results))
          
-          coordinates_bt=coordinates_player("model/bowlingTypeClassificationModels/content/output.txt")
+          coordinates_bt=coordinates_player("output.txt")
           H2=coordinates_bt["batsman"]["h"]
          
           if H2==0:
@@ -389,10 +398,10 @@ def ball_classification(player_name,filename,folder_path,player_det_model,ball_d
           cv2.rectangle(frame, (coordinates_bt["batsman"]["xmin"],coordinates_bt["batsman"]["ymin"]),(coordinates_bt["batsman"]["xmin"]+coordinates_bt["batsman"]["w"],coordinates_bt["batsman"]["ymin"]+coordinates_bt["batsman"]["h"]), (0, 0, 255), 2)
           cv2.rectangle(frame, (coordinates_bt["bowler"]["xmin"],coordinates_bt["bowler"]["ymin"]),(coordinates_bt["bowler"]["xmin"]+coordinates_bt["bowler"]["w"],coordinates_bt["bowler"]["ymin"]+coordinates_bt["bowler"]["h"]), (255, 0, 0), 2)
           
-          results = model_ball.predict(source="model/bowlingTypeClassificationModels/content/pic.jpg")
-          with open("model/bowlingTypeClassificationModels/content/output.txt","w") as f:
+          results = model_ball.predict(source="pic.jpg")
+          with open("output.txt","w") as f:
             f.write(str(results))
-          xmin,ymin,h,w=coordinates("model/bowlingTypeClassificationModels/content/output.txt")
+          xmin,ymin,h,w=coordinates("output.txt")
           ball_coordinates=[xmin,ymin,h,w]
           cv2.rectangle(frame, (xmin,ymin),(xmin+w,ymin+h), (0, 0, 255), 2)
        
